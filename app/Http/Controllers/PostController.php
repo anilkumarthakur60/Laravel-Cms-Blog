@@ -11,7 +11,12 @@ use App\Http\Requests\post\UpdatePostRequest;
 use App\Http\Requests\post\CreatePostRequest;
 
 class PostController extends Controller
-{
+{   
+    public function __construct()
+    {
+        $this->middleware('verifyCategoryCount')->only(['create','store']);
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +28,7 @@ class PostController extends Controller
         //
     }
  
-    /**
+    /** 
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

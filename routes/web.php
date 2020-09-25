@@ -19,9 +19,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('categories', 'CategoryController');
-Route::resource('posts', 'PostController')->middleware('auth');
-Route::get('trashed-posts', 'PostController@treashed')->name('trashed-posts.index');
-Route::put('restore-post/{post}','PostController@restore')->name('restore-posts');
 
+
+Route::middleware(['auth'])->group( function () {
+
+        Route::get('/home', 'HomeController@index')->name('home');
+        Route::resource('categories', 'CategoryController');
+        Route::resource('posts', 'PostController');
+        Route::get('trashed-posts', 'PostController@treashed')->name('trashed-posts.index');
+        Route::put('restore-post/{post}','PostController@restore')->name('restore-posts');
+
+        Route::resource('tags', 'TagsController');
+
+
+});
