@@ -74,9 +74,14 @@
                         <form action="{{route('posts.destroy',$post->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">
+                            <button type="submit" class="btn btn-danger" onclick="handleDelete({{$post->id}})" data-toggle="modal" data-target="#deleteModal">
                                 {{$post->trashed()? 'Delete':'trash' }}    
-                            </button>                            
+                            </button>      
+                            
+                           
+                            
+
+
                         </form>
                         </td>
                       
@@ -87,6 +92,34 @@
                
             </tbody>
         </table>
+                                                    <!-- Modal -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <form action="{{route('posts.destroy',['post'=>$post->id])}}" method="POST" id="deleteCategoryForm">
+                    @csrf
+                        @method('DELETE')
+
+                        
+                        
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title " id="deleteModalLabel" >Delete Post</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                            <div class="modal-body text-center">
+                                Are you sure you want to delete this Post
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No, Go back</button>
+                                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                {{-- end of delete modal --}}
             @else
             <h3 class="text-center">No Post Availabe</h3>
         @endif
@@ -94,39 +127,12 @@
     </div>
 </div>
 
-{{-- 
-<!-- Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <form action="{{route('posts.destroy',['post'=>$post->id])}}" method="POST" id="deleteCategoryForm">
-       @csrf
-        @method('DELETE')
 
-        
-        
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title " id="deleteModalLabel" >Delete Category</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-            </div>
-            <div class="modal-body text-center">
-                Are you sure you want to delete this Post
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No, Go back</button>
-                <button type="submit" class="btn btn-danger">Yes, Delete</button>
-            </div>
-        </div>
-      </form>
-    </div>
-</div> --}}
 
 @endsection
 
 @section('scripts')
-{{-- <script>
+<script>
     function handleDelete(id){
       
         var form=documement.getElementById('deleteCategoryForm')
@@ -134,7 +140,7 @@
         $('#deleteModal').modal('show')
     }
 
-</script> --}}
+</script>
 
 
 

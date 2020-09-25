@@ -15,21 +15,7 @@ Create Post
     </div>
     <div class="card-body">
        
-       {{-- validation error massage  --}}
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul class="list-group">
-                @foreach ($errors->all() as $error)
-                    <li class="list-group-item text-danger">
-                        {{$error}}
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-            
-        @endif
-
-
+    @include('partials.error')
         <form action="{{isset($post) ? route('posts.update',$post->id):route('posts.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             @if (isset($post))
@@ -91,39 +77,6 @@ Create Post
 
     </div>
 </div>
-{{-- 
-<form action="{{isset($post) ? route('posts.update',$post->id):route('posts.store')}}" method="post" enctype="multipart/form-data">
-    @csrf
-    @if (isset($post))
-    @method('PUT')
-        
-    @endif
-
-    <div class="form-group">
-        <label for="Title">Title:</label>
-        <input type="text" class="form-control" id="title" name="title" value=" {{isset($post)? $post->title :''}}">
-    </div>
-    <div class="form-group">
-        <label for="Content">Content:</label>
-        <textarea  class="form-control" id="content" name="content" cols="30" rows="5"> {{isset($post)? $post->content :''}}</textarea>
-    </div> 
-    
-    
-    <div class="form-group">
-        <label for="Content">Content:</label>
-        <textarea  class="form-control" id="content" name="content" cols="30" rows="5"> {{isset($post)? $post->content :''}}</textarea>
-    </div> 
-    
-    <div class="form-group">
-        <label for="Image">Image:</label>
-        <input type="file" class="form-control" id="image" name="image" value=" {{isset($post)? $post->image :''}}">
-  
-  
-    </div>  <div class="form-group">
-        <label for="Published_at">Published At:</label>
-        <input type="date" class="form-control" id="published_at" name="published_at" value=" {{isset($post)? $post->published_at :''}}">
-    </div>
- --}}
 
 
 
