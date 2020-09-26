@@ -31,7 +31,7 @@
                     <td>{{$tag->id}}</td>
                     <td>{{$tag->name}}</td>
                     <td>
-                        {{-- {{$tag->count()}} --}}0
+                        {{$tag->posts->count()}}
                     </td>
                    <td><a href="{{route('tags.edit',$tag->id)}}" class="btn btn-info" >Update</a></td>
                  <td><button onclick="handleDelete({{$tag->id}})" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete </button> </td> 

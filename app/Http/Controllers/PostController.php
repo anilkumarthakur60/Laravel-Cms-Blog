@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Category;
 use Illuminate\Http\Request;
 
-
 use App\Post;
 use App\Http\Requests\post\UpdatePostRequest;
 use App\Http\Requests\post\CreatePostRequest;
+use App\Tag;
+use Facade\Ignition\Tabs\Tab;
 
 class PostController extends Controller
 {   
@@ -35,7 +36,7 @@ class PostController extends Controller
      */
     public function create()
 
-    {return view('posts.create')->with('categories',Category::all());
+    {return view('posts.create')->with('categories',Category::all())->with('tags',Tag::all());
         //
     }
 
@@ -45,9 +46,13 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreatePostRequest $request)
-    {   $image=$request->image->store('posts');
-        Post::create(['title'=>$request->title,'description'=>$request->description,'content'=>$request->content,'image'=>$image,'published_at'=>$request->published_at,'category_id'=>$request->category]);
+    public function store(CreatePostRequest $request){
+
+        $image=$request->image->store('posts');
+        $post= Post::create(['title'=>$request->title,'description'=>$request->description,'content'=>$request->content,'image'=>$image,'published_at'=>$request->published_at,'category_id'=>$request->category]);
+        if($request->tags){
+            $post->tags()->attach($request->tags);
+        }
         session()->flash('success','Post created successfully');
        return redirect(route('posts.index'));
     
@@ -73,7 +78,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         
-        return view('posts.create')->with('post',$post)->with('categories',Category::all());
+        return view('posts.create')->with('post',$post)->with('categories',Category::all())->with('tags',Tag::all());
         //
     }
 
@@ -93,8 +98,11 @@ class PostController extends Controller
         $post->delete_image();
           $data['image']=$image;
           }
+
+          if($request->tags){
+              $post->tags()->sync($request->tags);
+          }
           $post->update($data);
-          
           session()->flash('success','Post Updated  Successfully');
           return redirect(route('posts.index'));
 
