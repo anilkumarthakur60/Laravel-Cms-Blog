@@ -39,13 +39,8 @@
                     <tr>  
                         <td>{{$post->id}}</td>
                         <td>{{$post->title}}</td>
-
                         <td> <a href="{{route('categories.edit',$post->category->id)}}">{{$post->category->name}} </a>
                         </td> {{-- category is the funtion post model--}}
-
-
-
-
                         <td>{{$post->description}}</td>
                         <td> <img src="{{asset('/storage/'.$post->image)}}" alt="" height="60px" width="60px"></td>
                         <td>{{$post->published_at}}</td>
@@ -64,25 +59,10 @@
                                 <td> <a href="{{route('posts.edit',$post->id)}}" class="btn btn-info" > Update  </a> </td>
 
                                 @endif
-
-                            
-                            
-                        
-                        {{-- <td><button onclick="handleDelete({{$post->id}})" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Trash </button> </td> 
-                       --}}
                         <td> 
-                        <form action="{{route('posts.destroy',$post->id)}}" method="POST">
-                            @csrf
-                            @method('DELETE')
                             <button type="submit" class="btn btn-danger" onclick="handleDelete({{$post->id}})" data-toggle="modal" data-target="#deleteModal">
                                 {{$post->trashed()? 'Delete':'trash' }}    
-                            </button>      
-                            
-                           
-                            
-
-
-                        </form>
+                            </button>   
                         </td>
                       
                      
