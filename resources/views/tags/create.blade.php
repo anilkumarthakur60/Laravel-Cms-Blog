@@ -1,4 +1,8 @@
 @extends('layouts.app')
+@section('title')
+      Tag
+    
+@endsection
 
 @section('content')
 
@@ -34,3 +38,4 @@
     
 
 @endsection
+

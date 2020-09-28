@@ -68,7 +68,7 @@ Create Post
                 <div class="form-group">
                     <label for="post_tag">Tags</label>
                 
-                        <select name="tags" id="tags" class="form-control" multiple>
+                        <select name="tags[]" id="tags" class="tag_selector form-control" multiple>
                             @foreach ($tags as $tag)
                                 <option value="{{$tag->id}}"
                                   @if (isset($post))
@@ -113,6 +113,9 @@ Create Post
 @section('script')
 <script src="https://cdn.ckeditor.com/ckeditor5/22.0.0/classic/ckeditor.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
     ClassicEditor
@@ -132,13 +135,24 @@ Create Post
             defaultHour:new Date().getHours(),
             defaultMinute:new Date().getMinutes()
             });
+    
+            $(document).ready(function() {
+    $('.tag_selector').select2();
+});
 </script>
 @endsection
 
 @section('css')
 <link href='https://cdn.jsdelivr.net/npm/froala-editor@3.2.0/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
 
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @endsection
 
 
+
+
+@section('scripts')
+
+    
+@endsection
