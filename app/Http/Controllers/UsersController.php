@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Tag;
 use Illuminate\Http\Request;
-use App\Http\Requests\Tags\CreateTagsRequest;
-use App\Http\Requests\Tags\UpdateTagsRequest;
+use App\User;
 
-class TagsController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,8 @@ class TagsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-
-    { return view('tags.index')->with('tags',Tag::all());
+    {
+        return view('users.index')->with('users',User::all());
         //
     }
 
@@ -27,7 +25,6 @@ class TagsController extends Controller
      */
     public function create()
     {
-        return view('tags.create');
         //
     }
 
@@ -37,11 +34,8 @@ class TagsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateTagsRequest $request)
+    public function store(Request $request)
     {
-        Tag::create(['name'=>$request->name]);
-        session()->flash('success','Tags created successfully');
-       return redirect(route('tags.index'));
         //
     }
 
@@ -53,7 +47,6 @@ class TagsController extends Controller
      */
     public function show($id)
     {
-       
         //
     }
 
@@ -63,10 +56,8 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tag $tag)
+    public function edit($id)
     {
-        return view('tags.create')->with('tag',$tag);
-
         //
     }
 
@@ -77,30 +68,28 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTagsRequest $request, Tag $tag)
-    { 
-        $tag->name=$request->name;
-        $tag->save();
-        session()->flash('success','Tags updated successfully');
-        return  redirect(route('tags.index'));
-
-    
+    public function update(Request $request, $id)
+    {
+        //
     }
 
     /**
-     * Remove the specified resource from storage. 
+     * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
-    {   if($tag->posts->count()>0){
-        session()->flash('error','Tags cannot be deleted because it is associated to some post Successfully');
-        return redirect()->back();
-    }
-         $tag->delete();
-        session()->flash('success','Tags Deleted Successfully');
-        return redirect(route('tags.index'));
+    public function destroy($id)
+    {
         //
+    }
+
+    public function makeAdmin(User $user)
+    {
+        $user->role='admin';
+        $user->save();
+        session()->flash('success','User has been made Admin successfully');
+        return redirect(route('users.index'));
+        # code...
     }
 }
