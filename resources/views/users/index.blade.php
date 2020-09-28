@@ -33,7 +33,7 @@
                         <td>{{$user->id}}</td>
                         <td>
                             
-                          <img src="" alt="">
+                          <img src="{{ Gravatar::get($user->email)}}" width="40px" height="40px" style="border-radius: 50%" alt="image">
                         </td>
 
 
