@@ -12,6 +12,7 @@
     <!-- Styles -->
     <link href="{{asset('css/page.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="https://lh3.googleusercontent.com/ogw/ADGmqu9SCKYU0ttrkBjw7z5nWDCK9Eew-A6UE1n-GG19=s83-c-mo" type="image/x-icon">
@@ -26,13 +27,13 @@
 
         <div class="navbar-left">
           <button class="navbar-toggler" type="button">&#9776;</button>
-          <a class="navbar-brand" href="../index.html">
-            <img class="logo-dark" src="../assets/img/logo-dark.png" alt="logo">
-            <img class="logo-light" src="../assets/img/logo-light.png" alt="logo">
-          </a>
+          <a class="navbar-brand" href="">
+            <img class="logo-dark " src="https://scontent.fktm4-1.fna.fbcdn.net/v/t1.0-9/120185730_790566771782586_4446148852909576343_n.png?_nc_cat=101&_nc_sid=8024bb&_nc_ohc=6kiuVvq2pU4AX843AdK&_nc_ht=scontent.fktm4-1.fna&oh=f642e1072054545680edca592f62b97b&oe=5F96F41C" alt="">
+            <img class="logo-light " src="https://scontent.fktm4-1.fna.fbcdn.net/v/t1.0-9/120185730_790566771782586_4446148852909576343_n.png?_nc_cat=101&_nc_sid=8024bb&_nc_ohc=6kiuVvq2pU4AX843AdK&_nc_ht=scontent.fktm4-1.fna&oh=f642e1072054545680edca592f62b97b&oe=5F96F41C" alt="">
+        </a>
         </div>
 
-        <section class="navbar-mobile">
+        {{-- <section class="navbar-mobile">
           <span class="navbar-divider d-mobile-none"></span>
 
           <ul class="nav nav-navbar">
@@ -318,9 +319,20 @@
             </li>
 
           </ul>
-        </section>
+        </section> --}}
+         @if (Route::has('login'))
+            <div class="top-right pull-right links">
+                @auth
+                    <a href="{{ url('/home') }}" class="btn btn-info" style="border-radius: 28px" >Dashboard</a>
+                @else
+                    <a href="{{ route('login') }}" class="btn btn-success" style="border-radius: 28px">Login</a>
 
-        <a class="btn btn-xs btn-round btn-success" href="https://themeforest.net/item/thesaas-responsive-bootstrap-saas-software-webapp-template/19778599?license=regular&open_purchase_for_item_id=19778599&purchasable=source&ref=thethemeio">Buy Now</a>
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class=" btn btn-primary" style="border-radius: 28px">Register</a>
+                    @endif
+                @endauth
+            </div>
+         @endif
 
       </div>
     </nav><!-- /.navbar -->
@@ -353,77 +365,32 @@
             <div class="col-md-8 col-xl-9">
               <div class="row gap-y">
 
+                @foreach ($posts as $post)
                 <div class="col-md-6">
-                  <div class="card border hover-shadow-6 mb-6 d-block">
-                    <a href="#"><img class="card-img-top" src="../assets/img/thumb/1.jpg" alt="Card image cap"></a>
-                    <div class="p-6 text-center">
-                      <p><a class="small-5 text-lighter text-uppercase ls-2 fw-400" href="#">News</a></p>
-                      <h5 class="mb-0"><a class="text-dark" href="#">We relocated our office to a new designed garage</a></h5>
+                    <div class="card border hover-shadow-6 mb-6 d-block">
+                      <a href="#"><img class="" src="{{asset('/storage/'.$post->image)}}" height="200px"  style="max-width: 100%" alt="Card image cap"></a>
+                      <div class="p-6 text-center">
+                        <p><a class="small-5 text-lighter text-uppercase ls-2 fw-400" href="#">{{$post->category->name}}</a></p>
+                        <h5 class="mb-0"><a class="text-dark" href="#">{{$post->title}}</a></h5>
+                      </div>
                     </div>
                   </div>
-                </div>
+                    
+                @endforeach
+
+               
 
 
-                <div class="col-md-6">
-                  <div class="card border hover-shadow-6 mb-6 d-block">
-                    <a href="#"><img class="card-img-top" src="../assets/img/thumb/2.jpg" alt="Card image cap"></a>
-                    <div class="p-6 text-center">
-                      <p><a class="small-5 text-lighter text-uppercase ls-2 fw-400" href="#">Marketing</a></p>
-                      <h5 class="mb-0"><a class="text-dark" href="#">Top 5 brilliant content marketing strategies</a></h5>
-                    </div>
-                  </div>
-                </div>
+               
 
-
-                <div class="col-md-6">
-                  <div class="card border hover-shadow-6 mb-6 d-block">
-                    <a href="#"><img class="card-img-top" src="../assets/img/thumb/3.jpg" alt="Card image cap"></a>
-                    <div class="p-6 text-center">
-                      <p><a class="small-5 text-lighter text-uppercase ls-2 fw-400" href="#">Design</a></p>
-                      <h5 class="mb-0"><a class="text-dark" href="#">Best practices for minimalist design with example</a></h5>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="col-md-6">
-                  <div class="card border hover-shadow-6 mb-6 d-block">
-                    <a href="#"><img class="card-img-top" src="../assets/img/thumb/4.jpg" alt="Card image cap"></a>
-                    <div class="p-6 text-center">
-                      <p><a class="small-5 text-lighter text-uppercase ls-2 fw-400" href="#">Hiring</a></p>
-                      <h5 class="mb-0"><a class="text-dark" href="#">Congratulate and thank to Maryam for joining our team</a></h5>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="col-md-6">
-                  <div class="card border hover-shadow-6 mb-6 d-block">
-                    <a href="#"><img class="card-img-top" src="../assets/img/thumb/5.jpg" alt="Card image cap"></a>
-                    <div class="p-6 text-center">
-                      <p><a class="small-5 text-lighter text-uppercase ls-2 fw-400" href="#">Product</a></p>
-                      <h5 class="mb-0"><a class="text-dark" href="#">New published books to read by a product designer</a></h5>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="col-md-6">
-                  <div class="card border hover-shadow-6 mb-6 d-block">
-                    <a href="#"><img class="card-img-top" src="../assets/img/thumb/6.jpg" alt="Card image cap"></a>
-                    <div class="p-6 text-center">
-                      <p><a class="small-5 text-lighter text-uppercase ls-2 fw-400" href="#">Management</a></p>
-                      <h5 class="mb-0"><a class="text-dark" href="#">This is why it's time to ditch dress codes at work</a></h5>
-                    </div>
-                  </div>
-                </div>
+              
 
               </div>
 
 
               <nav class="flexbox mt-30">
-                <a class="btn btn-white disabled"><i class="ti-arrow-left fs-9 mr-4"></i> Newer</a>
-                <a class="btn btn-white" href="#">Older <i class="ti-arrow-right fs-9 ml-4"></i></a>
+                <a class="btn btn-white "><i class="fa fa-arrow-left" aria-hidden="true"></i> Newer</a>
+                <a class="btn btn-white" href="#">Older <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
               </nav>
             </div>
 
@@ -436,7 +403,7 @@
                 <form class="input-group" target="#" method="GET">
                   <input type="text" class="form-control" name="s" placeholder="Search">
                   <div class="input-group-addon">
-                    <span class="input-group-text"><i class="ti-search"></i></span>
+                    <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
                   </div>
                 </form>
 
@@ -444,61 +411,41 @@
 
                 <h6 class="sidebar-title">Categories</h6>
                 <div class="row link-color-default fs-14 lh-24">
-                  <div class="col-6"><a href="#">News</a></div>
-                  <div class="col-6"><a href="#">Updates</a></div>
-                  <div class="col-6"><a href="#">Design</a></div>
-                  <div class="col-6"><a href="#">Marketing</a></div>
-                  <div class="col-6"><a href="#">Partnership</a></div>
-                  <div class="col-6"><a href="#">Product</a></div>
-                  <div class="col-6"><a href="#">Hiring</a></div>
-                  <div class="col-6"><a href="#">Offers</a></div>
+                 @foreach ($categories as $category)
+                 <div class="col-6"><a href="#">{{$category->name}}</a></div>
+                 @endforeach
+                   
+                 
                 </div>
 
                 <hr>
 
                 <h6 class="sidebar-title">Top posts</h6>
+                @foreach ($posts as $post)
                 <a class="media text-default align-items-center mb-5" href="blog-single.html">
-                  <img class="rounded w-65px mr-4" src="../assets/img/thumb/4.jpg">
-                  <p class="media-body small-2 lh-4 mb-0">Thank to Maryam for joining our team</p>
-                </a>
+                    <img class=" mr-4" src="{{asset('/storage/'.$post->image)}}" height="50px" width="100px">
+                    <p class="media-body small-2 lh-4 mb-0">{{$post->title}}</p>
+                  </a>
+                @endforeach
 
-                <a class="media text-default align-items-center mb-5" href="blog-single.html">
-                  <img class="rounded w-65px mr-4" src="../assets/img/thumb/3.jpg">
-                  <p class="media-body small-2 lh-4 mb-0">Best practices for minimalist design</p>
-                </a>
+               
 
-                <a class="media text-default align-items-center mb-5" href="blog-single.html">
-                  <img class="rounded w-65px mr-4" src="../assets/img/thumb/5.jpg">
-                  <p class="media-body small-2 lh-4 mb-0">New published books for product designers</p>
-                </a>
-
-                <a class="media text-default align-items-center mb-5" href="blog-single.html">
-                  <img class="rounded w-65px mr-4" src="../assets/img/thumb/2.jpg">
-                  <p class="media-body small-2 lh-4 mb-0">Top 5 brilliant content marketing strategies</p>
-                </a>
+               
 
                 <hr>
 
                 <h6 class="sidebar-title">Tags</h6>
                 <div class="gap-multiline-items-1">
-                  <a class="badge badge-secondary" href="#">Record</a>
-                  <a class="badge badge-secondary" href="#">Progress</a>
-                  <a class="badge badge-secondary" href="#">Customers</a>
-                  <a class="badge badge-secondary" href="#">Freebie</a>
-                  <a class="badge badge-secondary" href="#">Offer</a>
-                  <a class="badge badge-secondary" href="#">Screenshot</a>
-                  <a class="badge badge-secondary" href="#">Milestone</a>
-                  <a class="badge badge-secondary" href="#">Version</a>
-                  <a class="badge badge-secondary" href="#">Design</a>
-                  <a class="badge badge-secondary" href="#">Customers</a>
-                  <a class="badge badge-secondary" href="#">Job</a>
+                 @foreach ($tags as $tag)
+                 <a class="badge badge-secondary" href="#">{{$tag->name}}</a>
+                 @endforeach
+                   
+                 
                 </div>
 
                 <hr>
 
-                <h6 class="sidebar-title">About</h6>
-                <p class="small-3">TheSaaS is a responsive, professional, and multipurpose SaaS, Software, Startup and WebApp landing template powered by Bootstrap 4. TheSaaS is a powerful and super flexible tool for any kind of landing pages.</p>
-
+                
 
               </div>
             </div>
@@ -514,32 +461,23 @@
       <div class="container">
         <div class="row gap-y align-items-center">
 
-          <div class="col-6 col-lg-3">
-            <a href="../index.html"><img src="../assets/img/logo-dark.png" alt="logo"></a>
+          <div class="col-6 col-lg-4">
+            <a href="/">
+                <img height="100px" width="100px" src="{{asset('img/logo.png')}}" alt=""></a>
           </div>
 
-          <div class="col-6 col-lg-3 text-right order-lg-last">
-            <div class="social">
-              <a class="social-facebook" href="https://www.facebook.com/thethemeio"><i class="fa fa-facebook"></i></a>
-              <a class="social-twitter" href="https://twitter.com/thethemeio"><i class="fa fa-twitter"></i></a>
-              <a class="social-instagram" href="https://www.instagram.com/thethemeio/"><i class="fa fa-instagram"></i></a>
-              <a class="social-dribbble" href="https://dribbble.com/thethemeio"><i class="fa fa-dribbble"></i></a>
+          <div class="col-6 col-lg-6 ">
+            <div class="">
+             @include('partials.social')
             </div>
           </div>
 
-          <div class="col-lg-6">
-            <div class="nav nav-bold nav-uppercase nav-trim justify-content-lg-center">
-              <a class="nav-link" href="../uikit/index.html">Elements</a>
-              <a class="nav-link" href="../block/index.html">Blocks</a>
-              <a class="nav-link" href="../page/about-1.html">About</a>
-              <a class="nav-link" href="../blog/grid.html">Blog</a>
-              <a class="nav-link" href="../page/contact-1.html">Contact</a>
-            </div>
-          </div>
+         
 
         </div>
       </div>
     </footer><!-- /.footer -->
+
 
 
     <!-- Scripts -->
@@ -549,17 +487,4 @@
   </body>
 </html>
 
-{{-- 
-@if (Route::has('login'))
-<div class="top-right pull-right links">
-    @auth
-        <a href="{{ url('/home') }}">Dashboard</a>
-    @else
-        <a href="{{ route('login') }}">Login</a>
 
-        @if (Route::has('register'))
-            <a href="{{ route('register') }}">Register</a>
-        @endif
-    @endauth
-</div>
-@endif --}}

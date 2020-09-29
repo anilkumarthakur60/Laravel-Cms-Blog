@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Blog\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
  
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','WelcomeController@index');
 
 Auth::routes();
+
+Route::get('/post/{post}',[PostController::class,'show']);
 
 
 
