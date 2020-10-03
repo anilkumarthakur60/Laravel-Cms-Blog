@@ -8,7 +8,7 @@
 
 <style>
     
-.fa {
+a.fa {
     padding: 20px;
     font-size: 20px;
     text-align: center;

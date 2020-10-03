@@ -14,11 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
  
-Route::get('/','WelcomeController@index');
+Route::get('/','WelcomeController@index')->name('welcome');
 
 Auth::routes();
 
-Route::get('/post/{post}',[PostController::class,'show']);
+
+
+Route::get('blog/posts/{post}',[PostController::class,'show'])->name('blog.show');//show is mothod
+
+Route::get('blog/categories/{category}',[PostController::class,'category'])->name('blog.category');//cateory is method
+
+Route::get('blog/tags/{tag}',[PostController::class,'tag'])->name('blog.tag');//tag is method
+
 
 
 

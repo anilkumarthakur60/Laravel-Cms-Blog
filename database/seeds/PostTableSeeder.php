@@ -4,6 +4,7 @@ use App\Category;
 use Illuminate\Database\Seeder;
 use App\Post;
 use App\Tag;
+use Illuminate\Support\Facades\Hash;
 
 class PostTableSeeder extends Seeder
 {
@@ -16,7 +17,36 @@ class PostTableSeeder extends Seeder
     {   $category1=Category::create([
             'name'=>'News'
             ]);
-            
+        
+        $author1=App\User::create([
+            'name'=>'Anil',
+            'email'=>'anil@gmail.com',
+            'password'=>Hash::make('aaaassss'),
+        ]);
+
+        $author2=App\User::create([
+            'name'=>'Anil Kumar',
+            'email'=>'anilkumar@gmail.com',
+            'password'=>Hash::make('aaaassss'),
+        ]);
+        $author3=App\User::create([
+            'name'=>'Anil Kumar Thakur',
+            'email'=>'anilkumarthakur@gmail.com',
+            'password'=>Hash::make('aaaassss'),
+        ]);
+        $author4=App\User::create([
+            'name'=>'Anil Kumar Thakurr',
+            'email'=>'anilkumarthakurr@gmail.com',
+            'password'=>Hash::make('aaaassss'),
+        ]);
+        $author5=App\User::create([
+            'name'=>'Anil Kumar Thakurs',
+            'email'=>'anilkumarthakurs @gmail.com',
+            'password'=>Hash::make('aaaassss'),
+        ]);
+
+
+
         $category2=Category::create([
                 'name'=>'design'
                 ]);
@@ -29,40 +59,46 @@ class PostTableSeeder extends Seeder
         $category5=Category::create([
                             'name'=>'marketting'
                             ]);
-        $post1=Post::create([
+                                //$post1=$author1->posts()->create here calling author1 and calling relationship and calling create method
+        $post1=$author1->posts()->create([
             'title'=>'laravel blog title',
             'description'=>'laravel blog description',
             'content'=>' Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo accusamus dolor incidunt laborum odio! Ipsa eaque, sunt minima nisi fugiat sed molestias voluptas porro animi doloribus doloremque itaque labore dignissimos?',
             'category_id'=>$category1->id,
-            'image'=>'posts/1.jpg'
+            'image'=>'posts/1.jpg',
+            
             ]);
-        $post2=Post::create([
+        $post2=$author2->posts()->create([
         'title'=>'laravel blog title',
         'description'=>'laravel blog description',
         'content'=>' Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo accusamus dolor incidunt laborum odio! Ipsa eaque, sunt minima nisi fugiat sed molestias voluptas porro animi doloribus doloremque itaque labore dignissimos?',
         'category_id'=>$category2->id,
-        'image'=>'posts/2.jpg'
+        'image'=>'posts/2.jpg',
+        
               ]);
-        $post3=Post::create([
+        $post3=$author3->posts()->create([
         'title'=>'laravel blog title',
         'description'=>'laravel blog description',
         'content'=>' Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo accusamus dolor incidunt laborum odio! Ipsa eaque, sunt minima nisi fugiat sed molestias voluptas porro animi doloribus doloremque itaque labore dignissimos?',
         'category_id'=>$category3->id,
-        'image'=>'posts/3.jpg'
+        'image'=>'posts/3.jpg',
+        
               ]);
-        $post4=Post::create([
+        $post4=$author4->posts()->create([
         'title'=>'laravel blog title',
         'description'=>'laravel blog description',
         'content'=>' Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo accusamus dolor incidunt laborum odio! Ipsa eaque, sunt minima nisi fugiat sed molestias voluptas porro animi doloribus doloremque itaque labore dignissimos?',
         'category_id'=>$category4->id,
-        'image'=>'posts/4.jpg'
+        'image'=>'posts/4.jpg',
+        
                 ]);
-        $post5=Post::create([
+        $post5=$author5->posts()->create([
         'title'=>'laravel blog title',
         'description'=>'laravel blog description',
         'content'=>' Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo accusamus dolor incidunt laborum odio! Ipsa eaque, sunt minima nisi fugiat sed molestias voluptas porro animi doloribus doloremque itaque labore dignissimos?',
         'category_id'=>$category4->id,
-        'image'=>'posts/5.jpg'
+        'image'=>'posts/5.jpg',
+        
 
                 ]);
 

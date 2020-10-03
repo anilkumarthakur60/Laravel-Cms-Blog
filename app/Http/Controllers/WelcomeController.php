@@ -15,7 +15,14 @@ class WelcomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   return view('welcome')->with('categories',Category::all())->with('posts',Post::all())->with('tags',Tag::all());
+    {  
+        
+        
+        return view('welcome')
+        ->with('categories',Category::all())
+        
+        ->with('tags',Tag::all())
+        ->with('posts',Post::searched()->paginate(4));
         //
     }
 

@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function index() 
     { 
-        return view('posts.index')->with('posts',Post::all());
+        return view('posts.index')->with('posts',Post::all()); 
         //
     }
  
@@ -49,7 +49,14 @@ class PostController extends Controller
     public function store(CreatePostRequest $request){
 
         $image=$request->image->store('posts');
-        $post= Post::create(['title'=>$request->title,'description'=>$request->description,'content'=>$request->content,'image'=>$image,'published_at'=>$request->published_at,'category_id'=>$request->category]);
+        $post= Post::create(['title'=>$request->title,
+        'description'=>$request->description,
+        'content'=>$request->content,
+        'image'=>$image,
+        'published_at'=>$request->published_at,
+        'category_id'=>$request->category,
+        'user_id'=>auth()->user()->id,
+        ]);
         if($request->tags){
             $post->tags()->attach($request->tags);
         }
@@ -124,7 +131,7 @@ class PostController extends Controller
             $post->delete_image();
             $post->forceDelete();
             session()->flash('success','Post deleted  permanently');
-        }
+        } 
         else{
             $post->delete();
             session()->flash('success','Post trashed successfully');
@@ -150,4 +157,7 @@ class PostController extends Controller
         return redirect()->back();
 
     }
+
+
+    
 }

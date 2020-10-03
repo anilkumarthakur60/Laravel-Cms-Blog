@@ -38,7 +38,7 @@
 
 
                     <td>{{$user->name}} <small> @if ($user->isAdmin())
-                        [{{$user->role}}]
+                        [{{$user->role}}] 
                     @endif   </small></td>
                         <td>{{$user->email}}</td>
                         {{-- <td> <img src="{{asset('/storage/'.$post->image)}}" alt="" height="60px" width="60px"></td> --}}

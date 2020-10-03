@@ -129,6 +129,7 @@ Create Post
     
             flatpickr('#published_at',{
                 enableTime: true,
+                enableSeconds:true,
                 altFormat: "F j, Y",
                  dateFormat: "Y-m-d H:i",
                  defaultDate: "today",

@@ -30,7 +30,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{route('welcome')}}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -103,15 +103,14 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <ul class="list-group">
+                                       
+                                       
                                         @if (auth()->user()->isAdmin())
                                             <li class="list-group-item">
                                                 <a href="{{route('users.index')}}">
                                                     Users
                                                 </a>
                                             </li>
-
-                                        
-                                            
                                         @endif
                                        
                                         <li class="list-group-item">
