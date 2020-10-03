@@ -60,9 +60,15 @@
 
                                 @endif
                         <td> 
-                            <button type="submit" class="btn btn-danger" onclick="handleDelete({{$post->id}})" data-toggle="modal" data-target="#deleteModal">
-                                {{$post->trashed()? 'Delete':'trash' }}    
-                            </button>   
+                            
+                               @if (auth()->user()->isAdmin())
+                               <button type="submit" class="btn btn-danger" onclick="handleDelete({{$post->id}})" data-toggle="modal" data-target="#deleteModal">
+                           
+                                      {{$post->trashed()? 'Delete':'trash' }}   
+                              
+                             </button>   
+                              @endif
+                                
                         </td>
                       
                      

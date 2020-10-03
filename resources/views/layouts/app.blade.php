@@ -103,7 +103,10 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <ul class="list-group">
-                                       
+                                       <li class="list-group-item">
+                                           <a href="{{route('home')}}">Dashboard</a>
+
+                                       </li>
                                        
                                         @if (auth()->user()->isAdmin())
                                             <li class="list-group-item">
@@ -122,10 +125,11 @@
                                         </li>
                                     </ul>
                                     <ul class="list-group mt-1">
-                                        
+                                        {{-- @if (auth()->user()->isAdmin()) --}}
                                         <li class="list-group-item">
                                             <a href="{{route('trashed-posts.index')}}">Trash Post</a>
                                         </li>
+                                       
                                         
                                     </ul>
                                     <li class="list-group-item">
