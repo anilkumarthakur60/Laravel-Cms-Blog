@@ -33,7 +33,7 @@ Create Post
             
             <div class="form-group "  >
                     
-            <textarea id="content" name="content" class="form-control"> {{isset($post)? $post->content:''}}</textarea>
+            <textarea id="my-editor" name="content" class="form-control"> {{isset($post)? $post->content:''}}</textarea>
              </div> 
             @if (isset($post))
             <div class="form-group">
@@ -118,14 +118,14 @@ Create Post
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-    ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .then( editor => {
-                    console.log( editor );
-            } )
-            .catch( error => {
-                    console.error( error );
-            } );
+    // ClassicEditor
+    //         .create( document.querySelector( '#editor' ) )
+    //         .then( editor => {
+    //                 console.log( editor );
+    //         } )
+    //         .catch( error => {
+    //                 console.error( error );
+    //         } );
     
             flatpickr('#published_at',{
                 enableTime: true,
@@ -142,19 +142,17 @@ Create Post
 });
 </script>
 
-
-  <!-- CKEditor init -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.11/ckeditor.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.11/adapters/jquery.js"></script>
-  <script>
-    $('textarea[id=content]').ckeditor({
-      height: 100,
-      filebrowserImageBrowseUrl: route_prefix + '?type=Images',
-      filebrowserImageUploadUrl: route_prefix + '/upload?type=Images&_token={{csrf_token()}}',
-      filebrowserBrowseUrl: route_prefix + '?type=Files',
-      filebrowserUploadUrl: route_prefix + '/upload?type=Files&_token={{csrf_token()}}'
-    });
-  </script>
+<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script>
+  var options = {
+    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+  };
+  
+CKEDITOR.replace('my-editor', options);
+</script>
 @endsection
 
 
