@@ -153,6 +153,12 @@ Create Post
   
 CKEDITOR.replace('my-editor', options);
 </script>
+
+
+
+
+
+
 @endsection
 
 
