@@ -33,6 +33,17 @@ return [
     'github' => [
         'client_id' => '94963c1a233ffbd2969e',
         'client_secret' => '12f9c5c346e9ccd0dcdf9fce68e70e83a2da1df9',
-        'redirect' => 'http://127.0.0.1:8000/login/github/callback',
+        'redirect' => 'http://laravelblog.com/login/github/callback',
     ],
+    'facebook' => [
+        'client_id' => '1242232086176521',
+        'client_secret' => '7057f026e551de6c4241d91782d70da5',
+        'redirect' => 'http://laravelblog.com/login/facebok/callback',
+    ],
+    'google' => [
+        'client_id' => '355555850224-sd36iloqrstscqti0n8n6m5rvhchpch2.apps.googleusercontent.com',
+        'client_secret' => 'MVtT3qO9rtF0yxBku8kLCKjq',
+        'redirect' => 'http://laravelblog.com/login/google/callback',
+    ],
+
 ];

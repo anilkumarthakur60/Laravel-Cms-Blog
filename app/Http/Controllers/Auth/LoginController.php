@@ -66,6 +66,7 @@ class LoginController extends Controller
         }
       
 auth()->login($user,true);
+session()->flash('success','signed in with '.$website);
 return redirect('/home');
         // $user->token;
     }
