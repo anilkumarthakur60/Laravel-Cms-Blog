@@ -62,7 +62,10 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+
+                                    
                             </div>
+                            <a href="{{route('githublogin')}}" class="btn btn-secondary btn-sm text-center">Login with github</a>
                         </div>
                     </form>
                 </div>
