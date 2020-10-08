@@ -54,8 +54,5 @@ Route::post('users/{user}/make-admin', 'UsersController@makeAdmin')->name('users
 });
 
 
-// Route::get('login/{website}', 'Auth\LoginController@redirectToProvider')->name('githublogin');
-// Route::get('login/{website}/callback', 'Auth\LoginController@handleProviderCallback');
-
-Route::get('login/{website}', 'Auth\LoginController@redirectToProvider')->name('githublogin');
-Route::get('login/{website}/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('login/github', 'Auth\LoginController@redirectToProvider')->name('githublogin');
+Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');

@@ -65,15 +65,7 @@
 
                                     
                             </div>
-                            {{-- <a href="{{route('githublogin','github')}}" class="btn btn-secondary btn-sm text-center">Login with github</a>
-                            <a href="{{route('githublogin','facebook')}}" class="btn btn-secondary btn-sm text-center">Login with facebook</a>
-                            <a href="{{route('githublogin','google')}}" class="btn btn-secondary btn-sm text-center">Login with google</a>
-                   --}}
-                   <a href="{{route('githublogin','facebook')}}" class="btn btn-primary">faceook</a>
-                   <a href="{{route('githublogin','google')}}" class="btn btn-primary">google</a>
-                   <a href="{{route('githublogin','github')}}" class="btn btn-primary">github</a>
-                   
-                     
+                            <a href="{{route('githublogin')}}" class="btn btn-secondary btn-sm text-center">Login with github</a>
                         </div>
                     </form>
                 </div>
