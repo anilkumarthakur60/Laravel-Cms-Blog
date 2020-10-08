@@ -20,7 +20,8 @@ Category
 
 
         <form action="{{isset($category) ? route('categories.update',$category->id):route('categories.store')}}" method="post">
-            @csrf
+           @csrf
+
             @if (isset($category))
             @method('PUT')
                 

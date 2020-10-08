@@ -16,11 +16,9 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th></th>
                     <th>Name</th>
                     <th>Email</th>
-                
-                  
-                    <th>Delete</th>
                     
                   
                 </tr>
@@ -32,7 +30,6 @@
                     <tr>  
                         <td>{{$user->id}}</td>
                         <td>
-                            
                           <img src="{{ Gravatar::get($user->email)}}" width="40px" height="40px" style="border-radius: 50%" alt="image">
                         </td>
 
