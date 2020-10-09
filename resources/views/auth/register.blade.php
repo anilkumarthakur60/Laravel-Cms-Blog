@@ -69,6 +69,12 @@
                             </div>
                         </div>
                     </form>
+                    <div style="padding-left: 35%;padding-top: 10px">
+                        <h3>Or reginster with</h3>
+                    <a href="{{route('githublogin','facebook')}}" style="background-color: #3B5998;color: white;"  class="btn fa fa-facebook-official"> faceook</a>
+                    <a href="{{route('githublogin','google')}}" style="background-color:#dd4b39;color: white;"  class="btn fa fa-google">  &nbsp;Google</a>
+                    <a href="{{route('githublogin','github')}}" style="background-color:#24292e;color: white;" class="btn fa fa-github">  &nbsp;Github</a>
+                </div>
                 </div>
             </div>
         </div>

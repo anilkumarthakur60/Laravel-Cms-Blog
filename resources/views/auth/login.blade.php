@@ -62,17 +62,18 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
-
+                                <div class="mt-2">
+                                    <h3 class="pl-5"> or login with</h3>
+                                   <a href="{{route('githublogin','facebook')}}" style="background-color: #3B5998;color: white;"  class="btn fa fa-facebook-official"> faceook</a>
+                                   <a href="{{route('githublogin','google')}}" style="background-color:#dd4b39;color: white;"  class="btn fa fa-google">  &nbsp;Google</a>
+                                   <a href="{{route('githublogin','github')}}" style="background-color:#24292e;color: white;" class="btn fa fa-github">  &nbsp;Github</a>
+                               
+                                </div>
+                                 
                                     
                             </div>
-                            {{-- <a href="{{route('githublogin','github')}}" class="btn btn-secondary btn-sm text-center">Login with github</a>
-                            <a href="{{route('githublogin','facebook')}}" class="btn btn-secondary btn-sm text-center">Login with facebook</a>
-                            <a href="{{route('githublogin','google')}}" class="btn btn-secondary btn-sm text-center">Login with google</a>
-                   --}}
-                   <a href="{{route('githublogin','facebook')}}" class="btn btn-primary">faceook</a>
-                   <a href="{{route('githublogin','google')}}" class="btn btn-primary">google</a>
-                   <a href="{{route('githublogin','github')}}" class="btn btn-primary">github</a>
-                   
+                        
+                  
                      
                         </div>
                     </form>
