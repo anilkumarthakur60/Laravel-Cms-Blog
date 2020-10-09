@@ -38,7 +38,7 @@ return [
     'facebook' => [
         'client_id' => '1242232086176521',
         'client_secret' => '7057f026e551de6c4241d91782d70da5',
-        'redirect' => 'http://laravelblog.com/login/facebok/callback',
+        'redirect' => 'http://laravelblog.com/login/facebook/callback',
     ],
     'google' => [
         'client_id' => '355555850224-sd36iloqrstscqti0n8n6m5rvhchpch2.apps.googleusercontent.com',
