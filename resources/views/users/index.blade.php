@@ -34,10 +34,14 @@
                         </td>
 
 
-                    <td>{{$user->name}} <small> @if ($user->isAdmin())
-                        [{{$user->role}}] 
-                    @endif   </small></td>
-                        <td>{{$user->email}}</td>
+                    <td>{{$user->name}} 
+                        <small>
+                             @if ($user->isAdmin())
+                                    [{{$user->role}}] 
+                             @endif  
+                             </small>
+                    </td>
+                   <td>{{$user->email}}</td>
                         {{-- <td> <img src="{{asset('/storage/'.$post->image)}}" alt="" height="60px" width="60px"></td> --}}
 
                      @if (!$user->isAdmin())
@@ -46,8 +50,6 @@
                         @csrf
                         <button type="submit" class=" btn btn-success btn-sm">MAke Admin</button>
              
-                    
-                    
                     </form>
                 </td>
                          
