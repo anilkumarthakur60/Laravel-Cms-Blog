@@ -71,6 +71,7 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
+        $post->load('tags');
 
         return view('posts.create')->with('post', $post)->with('categories', Category::all())->with('tags', Tag::all());
         //

@@ -5,10 +5,12 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravelista\Comments\Commenter;
+
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Commenter;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +21,7 @@ class User extends Authenticatable
     //     'name', 'email', 'password','about',
     // ];
 
-    protected $guarded=[];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -41,11 +43,12 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->role=='admin';
+        return $this->role == 'admin';
         # code...
     }
     public function posts()
-    { return $this->hasMany(Post::class);
+    {
+        return $this->hasMany(Post::class);
         # code...
     }
 }
