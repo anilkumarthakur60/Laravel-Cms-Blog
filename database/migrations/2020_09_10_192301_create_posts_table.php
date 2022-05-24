@@ -1,5 +1,7 @@
 <?php
 
+use App\Category;
+use App\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,15 +16,16 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('title');
             $table->text('description');
             $table->text('content');
             $table->string('image');
             $table->timestamp('published_at')->nullable();
-            $table->integer('category_id'); //relationship category and then id
-            $table->integer('user_id');
+            $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();;
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

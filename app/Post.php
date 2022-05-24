@@ -63,4 +63,12 @@ class Post extends Model
         return $query->where('published_at', '<=', now());
         # code...
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $model->user_id = auth()->id();
+        });
+    }
 }

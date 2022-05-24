@@ -14,8 +14,7 @@ class CreateCommentsTable extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->bigIncrements('id');
-
+            $table->id();
             $table->string('commenter_id')->nullable();
             $table->string('commenter_type')->nullable();
             $table->index(["commenter_id", "commenter_type"]);
@@ -34,7 +33,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('child_id')->nullable();
             $table->foreign('child_id')->references('id')->on('comments')->onDelete('cascade');
 
-			$table->softDeletes();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
