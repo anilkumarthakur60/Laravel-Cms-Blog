@@ -88,31 +88,20 @@ class PostController extends Controller
 
         $post->update($data);
 
-        $tags = $request->tags;
-        foreach ($tags as $tag) {
-            if (is_numeric($tag)) {
-                $tagArr[] =  $tag;
-            } else {
-                $newTag = Tag::create(['name' => $tag]);
-                $tagArr[] = $newTag->id;
-            }
-        }
 
-        if ($request->tags) {
-            $post->tags()->sync($tagArr);
-        }
 
 
 
         // // improved shortcut 
-        //         $tagArrays = [];
-        //         if ($request->tags) {
-        //             foreach ($request->tags as $tag) {
-        //                 $tagArrays[] = Tag::firstOrCreate([
-        //                     'name' => $tag
-        //                 ])->id;
-        //             }
-        //         }
+        $tagArrays = [];
+        if ($request->tags) {
+            foreach ($request->tags as $tag) {
+                $tagArrays[] = Tag::firstOrCreate([
+                    'name' => $tag
+                ])->id;
+            }
+            $post->tags()->sync($tagArrays);
+        }
 
 
 

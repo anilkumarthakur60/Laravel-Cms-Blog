@@ -19,12 +19,9 @@ Auth::routes();
 
 
 
-Route::get('blog/posts/{post}', [PostController::class, 'show'])->name('blog.show'); //show is mothod
-
-Route::get('blog/categories/{category}', [PostController::class, 'category'])->name('blog.category'); //cateory is method
-
-Route::get('blog/tags/{tag}', [PostController::class, 'tag'])->name('blog.tag'); //tag is method
-
+Route::get('blog/posts/{post}', [PostController::class, 'show'])->name('blog.show');
+Route::get('blog/categories/{category}', [PostController::class, 'category'])->name('blog.category');
+Route::get('blog/tags/{tag}', [PostController::class, 'tag'])->name('blog.tag');
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
