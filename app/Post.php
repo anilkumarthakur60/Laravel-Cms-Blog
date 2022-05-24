@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -65,6 +66,10 @@ class Post extends Model
         parent::boot();
         self::creating(function ($model) {
             $model->user_id = auth()->id();
+        });
+        self::addGlobalScope(function (Builder $builder) {
+
+            $builder->where('user_id', auth()->id());
         });
     }
 }
