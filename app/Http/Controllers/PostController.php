@@ -20,7 +20,8 @@ class PostController extends Controller
 
     public function index()
     {
-        return view('posts.index')->with('posts', Post::all());
+        $posts = Post::with('user', 'category', 'tags')->get();
+        return view('posts.index', compact('posts'));
         //
     }
 
@@ -35,17 +36,13 @@ class PostController extends Controller
 
     public function store(CreatePostRequest $request)
     {
-        $tags = $request->tags;
-        foreach ($tags as $tag) {
 
-            if (is_numeric($tag)) {
-                $tagArr[] =  $tag;
-            } else {
-                // if the tag not numeric thats meaninig that its new tag and we should create it
-                $newTag = Tag::create(['name' => $tag]);
-
-                // the new Tag id is 3 for exaple
-                $tagArr[] = $newTag->id;
+        $tagArrays = [];
+        if ($request->tags) {
+            foreach ($request->tags as $tag) {
+                $tagArrays[] = Tag::firstOrCreate([
+                    'name' => $tag
+                ])->id;
             }
         }
 
@@ -58,11 +55,11 @@ class PostController extends Controller
             'image' => $image,
             'published_at' => $request->published_at,
             'category_id' => $request->category,
-            'user_id' => auth()->user()->id,
+
         ]);
         if ($request->tags) {
             // $post->tags()->attach($request->tags);
-            $post->tags()->sync($tagArr);
+            $post->tags()->sync($tagArrays);
         }
         session()->flash('success', 'Post created successfully');
         return redirect(route('posts.index'));

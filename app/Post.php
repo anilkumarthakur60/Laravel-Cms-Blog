@@ -41,27 +41,23 @@ class Post extends Model
     public function hasTag($tagId)
     {
         return in_array($tagId, $this->tags->pluck('id')->toArray());
-        # code...
     }
     public function user()
     {
         return $this->belongsTo(User::class);
-        # code...
     }
 
-    public function scopeSearched($query)          //scope and name of method we are going to use
+    public function scopeSearched($query)
     {
         $search = request()->query('search');
         if (!$search) {
             return $query->published();
         }
         return $query->published()->where('title', 'LIKE', "%{$search}%");
-        # code...
     }
     public function scopePublished($query)
     {
         return $query->where('published_at', '<=', now());
-        # code...
     }
 
     protected static function boot()
