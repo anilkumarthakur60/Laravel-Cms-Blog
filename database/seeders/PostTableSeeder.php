@@ -1,11 +1,11 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Category;
 use Illuminate\Database\Seeder;
-use App\Post;
 use App\Tag;
 use App\User;
-use Illuminate\Support\Facades\Hash;
 
 class PostTableSeeder extends Seeder
 {

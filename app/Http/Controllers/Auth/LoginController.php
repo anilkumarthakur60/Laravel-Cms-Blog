@@ -10,31 +10,14 @@ use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
+
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -46,30 +29,21 @@ class LoginController extends Controller
         return Socialite::driver($website)->redirect();
     }
 
-    /**
-     * Obtain the user information from GitHub.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function handleProviderCallback($website)
     {
-       $user= $githubuser = Socialite::driver($website)->user();
-        $user=User::where('provider_id',$githubuser->getId())->first();
-        if(!$user){
-            $user= User::create([
-                'name'=> $githubuser->getName(),
-                'email'=> $githubuser->getEmail(),
-                'provider_id'=>$githubuser->getId()
-                
-                ]);
+        $user = $githubuser = Socialite::driver($website)->user();
+        $user = User::where('provider_id', $githubuser->getId())->first();
+        if (!$user) {
+            $user = User::create([
+                'name' => $githubuser->getName(),
+                'email' => $githubuser->getEmail(),
+                'provider_id' => $githubuser->getId()
 
+            ]);
         }
-      
-auth()->login($user,true);
-session()->flash('success','signed in with '.$website);
-return redirect('/home');
-        // $user->token;
+        auth()->login($user, true);
+        session()->flash('success', 'signed in with ' . $website);
+        return redirect('/home');
     }
-
-
 }

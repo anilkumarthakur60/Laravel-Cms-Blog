@@ -16,7 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
 
-    { return view('categories.index')->with('categories',Category::all());
+    {
+        $categories = Category::orderBy('name', 'asc')->withCount('posts')->get();
+        return view('categories.index')->with('categories', $categories);
         //
     }
 
@@ -39,9 +41,9 @@ class CategoryController extends Controller
      */
     public function store(CreateCategoryRequest $request)
     {
-        Category::create(['name'=>$request->name]);
-        session()->flash('success','Category created successfully');
-       return redirect(route('categories.index'));
+        Category::create(['name' => $request->name]);
+        session()->flash('success', 'Category created successfully');
+        return redirect(route('categories.index'));
         //
     }
 
@@ -53,7 +55,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-       
+
         //
     }
 
@@ -65,7 +67,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.create')->with('category',$category);
+        return view('categories.create')->with('category', $category);
 
         //
     }
@@ -78,13 +80,11 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateCategoryRequest $request, Category $category)
-    { 
-        $category->name=$request->name;
+    {
+        $category->name = $request->name;
         $category->save();
-        session()->flash('success','category updated successfully');
+        session()->flash('success', 'category updated successfully');
         return  redirect(route('categories.index'));
-
-    
     }
 
     /**
@@ -94,13 +94,14 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Category $category)
-    {   if($category->posts->count()>0){
-        
-        session()->flash('error','Category Cannot be Deleted Because It Has Some post');
-        return redirect()->back();
-    }
+    {
+        if ($category->posts->count() > 0) {
+
+            session()->flash('error', 'Category Cannot be Deleted Because It Has Some post');
+            return redirect()->back();
+        }
         $category->delete();
-        session()->flash('success','Category Deleted Successfully');
+        session()->flash('success', 'Category Deleted Successfully');
         return redirect(route('categories.index'));
         //
     }

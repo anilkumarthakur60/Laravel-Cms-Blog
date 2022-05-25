@@ -2,7 +2,9 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,18 +13,14 @@ use Laravelista\Comments\Commentable;
 
 class Post extends Model
 {
-    use SoftDeletes, Commentable;
+    use SoftDeletes, Commentable, HasFactory, Sluggable;
     protected $dates = [
         'published_at',
     ];
 
-    protected $fillable = ['title', 'description', 'content', 'image', 'published_at', 'category_id', 'user_id'];
-    //
+    protected $guarded = ['id'];
 
-    /**
-     *
-     * @retun void
-     */
+    // protected $fillable = ['title', 'description', 'slug', 'content', 'image', 'published_at', 'category_id', 'user_id'];
 
     public function delete_image()
     {
@@ -37,11 +35,9 @@ class Post extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
-
-    // checks if post has tag return bool
     public function hasTag($tagId)
     {
-        return in_array($tagId, $this->tags->pluck('id')->toArray());
+        return in_array($tagId, $this->tags->pluck('name')->toArray());
     }
     public function user()
     {
@@ -64,12 +60,21 @@ class Post extends Model
     protected static function boot()
     {
         parent::boot();
-        self::creating(function ($model) {
-            $model->user_id = auth()->id();
-        });
-        self::addGlobalScope(function (Builder $builder) {
+        // self::creating(function ($model) {
+        //     $model->user_id = auth()->id();
+        // });
+        // self::addGlobalScope(function (Builder $builder) {
 
-            $builder->where('user_id', auth()->id());
-        });
+        //     $builder->where('user_id', auth()->id());
+        // });
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }

@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->text('description');
             $table->text('content');
             $table->string('image');
+            $table->string('slug')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();;

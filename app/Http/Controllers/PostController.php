@@ -149,7 +149,21 @@ class PostController extends Controller
     }
     public function show(Post $post, Category $category, Tag $tag)
     {
+
         return view('blog.show')->with('post', $post)->with('category', $category)->with('tag', $tag);
         //
+    }
+
+    public function tag(Tag $tag)
+    {
+        $data['posts'] = $tag->posts()->searched()->with('category')->paginate(4);
+
+        return view('welcome', $data);
+    }
+    public function category(Category $category)
+    {
+        $data['posts'] = $category->posts()->searched()->with('category')->paginate(4);
+
+        return view('welcome', $data);
     }
 }

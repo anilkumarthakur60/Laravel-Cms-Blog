@@ -40,7 +40,7 @@ Post
                 <tr>
                     <td>{{$post->id}}</td>
                     <td>{{ $post->user->name }}</td>
-                    <td> <a href="{{route('blog.show',$post->id)}}">{{$post->title}}</a></td>
+                    <td> <a href="{{route('blog.show',$post->slug)}}">{{$post->title}}</a></td>
                     <td> <a href="{{route('categories.edit',$post->category->id)}}">{{$post->category->name}} </a>
                     </td> {{-- category is the funtion post model--}}
                     <td>{{$post->description}}</td>
