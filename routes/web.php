@@ -37,11 +37,11 @@ Route::get('blog/tags/{tag:slug}', [PostController::class, 'tag'])->name('blog.t
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::resource('categories', CategoryController::class);
-    Route::resource('posts', PostController::class);
     Route::get('trashed-posts', [PostController::class, 'treashed'])->name('trashed-posts.index');
     Route::put('restore-post/{post}', [PostController::class, 'restore'])->name('restore-posts');
+    Route::resource('categories', CategoryController::class);
     Route::resource('tags', TagsController::class);
+    Route::resource('posts', PostController::class);
     Route::get('users/profile', [UsersController::class, 'edit'])->name('users.edit-profile');
     Route::put('users/profile', [UsersController::class, 'update'])->name('users.update-profile');
 });

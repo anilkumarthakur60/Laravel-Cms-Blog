@@ -20,7 +20,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::with('user', 'category', 'tags')->get();
+        $posts = Post::whereUserId(auth()->id())->with('user', 'category', 'tags')->get();
 
         return view('posts.index', compact('posts'));
         //

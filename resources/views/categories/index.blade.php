@@ -40,8 +40,13 @@ Category
                         {{$category->posts_count}}
                     </td>
                     <td><a href="{{route('categories.edit',$category->id)}}" class="btn btn-info">Update</a></td>
-                    <td><button onclick="handleDelete({{$category->id}})" class="btn btn-danger" data-toggle="modal"
-                            data-target="#deleteModal">Delete </button> </td>
+                    <td>
+                        <form action="{{ route('categories.destroy',$category->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </td>
 
                 </tr>
                 @endforeach
@@ -49,6 +54,7 @@ Category
 
             </tbody>
         </table>
+        {{ $categories->links() }}
 
         <!-- Modal -->
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
@@ -79,7 +85,6 @@ Category
                 </form>
             </div>
         </div>
-        {{-- end of delte modal --}}
         @else
         <h3 class="text-center">No Category Available</h3>
 

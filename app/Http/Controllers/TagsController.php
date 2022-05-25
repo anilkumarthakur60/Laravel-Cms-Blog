@@ -16,7 +16,9 @@ class TagsController extends Controller
      */
     public function index()
 
-    { return view('tags.index')->with('tags',Tag::all());
+    {
+        $tags = Tag::orderBy('name', 'asc')->withCount('posts')->get();
+        return view('tags.index', compact('tags'));
         //
     }
 
@@ -39,9 +41,9 @@ class TagsController extends Controller
      */
     public function store(CreateTagsRequest $request)
     {
-        Tag::create(['name'=>$request->name]);
-        session()->flash('success','Tags created successfully');
-       return redirect(route('tags.index'));
+        Tag::create(['name' => $request->name]);
+        session()->flash('success', 'Tags created successfully');
+        return redirect(route('tags.index'));
         //
     }
 
@@ -51,9 +53,9 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Tag $tag)
     {
-       
+        abort(404);
         //
     }
 
@@ -65,7 +67,7 @@ class TagsController extends Controller
      */
     public function edit(Tag $tag)
     {
-        return view('tags.create')->with('tag',$tag);
+        return view('tags.create')->with('tag', $tag);
 
         //
     }
@@ -78,13 +80,11 @@ class TagsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateTagsRequest $request, Tag $tag)
-    { 
-        $tag->name=$request->name;
+    {
+        $tag->name = $request->name;
         $tag->save();
-        session()->flash('success','Tags updated successfully');
+        session()->flash('success', 'Tags updated successfully');
         return  redirect(route('tags.index'));
-
-    
     }
 
     /**
@@ -94,13 +94,17 @@ class TagsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Tag $tag)
-    {   if($tag->posts->count()>0){
-        session()->flash('error','Tags cannot be deleted because it is associated to some post Successfully');
-        return redirect()->back();
-    }
-         $tag->delete();
-        session()->flash('success','Tags Deleted Successfully');
-        return redirect(route('tags.index'));
+    {
+
+        if ($tag->posts->count() > 0) {
+            session()->flash('error', 'Tags cannot be deleted because it is associated to some post Successfully');
+            return redirect()->back();
+        } else {
+
+            $tag->delete();
+            session()->flash('success', 'Tags Deleted Successfully');
+            return redirect(route('tags.index'));
+        }
         //
     }
 }

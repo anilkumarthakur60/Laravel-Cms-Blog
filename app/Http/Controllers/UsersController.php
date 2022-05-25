@@ -10,27 +10,29 @@ class UsersController extends Controller
 {
     public function index()
     {
-        return view('users.index')->with('users',User::all());
+        $users = User::orderBy('name', 'asc')->paginate();
+        return view('users.index', compact('users'));
         //
     }
 
-   
+
 
     public function edit()
-    { return view('users.edit')->with('user',auth()->user());
+    {
+        return view('users.edit')->with('user', auth()->user());
         //
     }
 
-  
-    public function update( UpdateProfileRequest $request)
-    {   
-        $user=auth()->user();
+
+    public function update(UpdateProfileRequest $request)
+    {
+        $user = auth()->user();
         $user->update([
-            'name'=>$request->name,
-            'about'=>$request->about
+            'name' => $request->name,
+            'about' => $request->about
         ]);
-        
-        session()->flash('success','User Profile updated successfully');
+
+        session()->flash('success', 'User Profile updated successfully');
         return redirect()->back();
         //
     }
@@ -42,9 +44,9 @@ class UsersController extends Controller
 
     public function makeAdmin(User $user)
     {
-        $user->role='admin';
+        $user->role = 'admin';
         $user->save();
-        session()->flash('success','User has been made Admin successfully');
+        session()->flash('success', 'User has been made Admin successfully');
         return redirect(route('users.index'));
         # code...
     }
