@@ -22,6 +22,7 @@
         "laravelista/comments": "^4.5",
         "unisharp/laravel-filemanager": "^2.1",
         "yajra/laravel-datatables-oracle": "^9.0",
+        "yajra/laravel-datatables": "^1.5",
         "cviebrock/eloquent-sluggable": "^8.0"
     },
     "require-dev": {

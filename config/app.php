@@ -180,7 +180,10 @@ return [
         UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
 
-        PostServiceProvider::class
+
+        PostServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
+
 
 
     ],
@@ -236,6 +239,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+
 
 
 
