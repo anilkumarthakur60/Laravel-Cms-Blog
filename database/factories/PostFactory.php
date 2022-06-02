@@ -19,7 +19,7 @@ class PostFactory extends Factory
         $categories = collect(Category::all()->modelKeys());
 
         return [
-            'title' => $this->faker->name(),
+            'title' => $this->faker->unique()->name(),
             'description' => $this->faker->name(),
             'content' => $this->faker->name(),
             'image' => 'https://via.placeholder.com/150',

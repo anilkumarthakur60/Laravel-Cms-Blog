@@ -15,15 +15,14 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::where('email', 'anilkumarthakur60@gmail.com')->first();
-        if (!$user) {
-            User::create([
-                'name' => 'sita',
-                'email' => 'sitakumarisharma60@gmail.com',
-                'role' => 'admin',
-                'password' => bcrypt('aaaassss')
-            ]);
-        }
+
+        User::create([
+            'name' => 'sita',
+            'email' => 'anilkumarthakur60@gmail.com',
+            'role' => 'admin',
+            'password' => bcrypt('aaaassss')
+        ]);
+
         //
     }
 }

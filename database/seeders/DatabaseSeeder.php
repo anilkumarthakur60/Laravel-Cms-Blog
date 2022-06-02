@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
             PostTableSeeder::class
         ]);
 
-        Category::factory(10)->create();
-        Tag::factory(10)->create();
-        Post::factory(500)->create();
-        User::factory(10)->hasPosts(50)->create();
+        // Category::factory(10)->create();
+        // Tag::factory(10)->create();
+        // Post::factory(500)->create();
+        // User::factory(10)->hasPosts(50)->create();
     }
 }

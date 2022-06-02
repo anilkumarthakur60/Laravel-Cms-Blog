@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostDatatableController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\TransformerController;
 use App\Http\Controllers\UsersController;
@@ -70,3 +71,6 @@ Route::post('blog/posts/{post}/comments', function (Request $request, Post $post
 
 
 Route::get('/post-transformer', [TransformerController::class, 'index']);
+
+Route::get('post-datatable', [PostDatatableController::class, 'index']);
+Route::get('user-datatable', [PostDatatableController::class, 'users'])->name('user-datatable');
